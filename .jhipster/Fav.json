@@ -1,0 +1,22 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "space",
+            "otherEntityName": "space",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "title"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "email"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20151107185849",
+    "dto": "no",
+    "pagination": "infinite-scroll"
+}

@@ -1,0 +1,541 @@
+<!--
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/"><span>jhipster</span> <span class="navbar-version">v{{VERSION}}</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
+            <ul class="nav navbar-nav navbar-right">
+                <li ui-sref-active="active">
+                    <a ui-sref="home" data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <span class="glyphicon glyphicon-home"></span>
+                        <span class="hidden-sm">Home</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                        <span>
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="hidden-sm">
+                                Entities
+                            </span>
+                            <b class="caret"></b>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li ui-sref-active="active" ><a ui-sref="service" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
+                        &#xA0;<span >service</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="fav" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
+                        &#xA0;<span >fav</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="image" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
+                        &#xA0;<span >image</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="review" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
+                        &#xA0;<span >review</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="space" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
+                        &#xA0;<span >space</span></a></li>
+                        <!-- JHipster will add entities to the menu here --><!--
+                    </ul>
+                </li>
+                <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                        <span>
+                            <span class="glyphicon glyphicon-user"></span>
+                            <span class="hidden-sm">
+                                Account
+                            </span>
+                            <b class="caret"></b>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="settings" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-wrench"></span>
+                            &#xA0;<span>Settings</span></a></li>
+                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="password" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-lock"></span>
+                            &#xA0;<span>Password</span></a></li>
+                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="sessions" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-cloud"></span>
+                            &#xA0;<span>Sessions</span></a></li>
+                        <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-log-out"></span>
+                            &#xA0;<span>Sign out</span></a></li>
+                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-log-in"></span>
+                            &#xA0;<span>Sign in</span></a></li>
+                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="register" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-plus-sign"></span>
+                            &#xA0;<span>Register</span></a></li>
+                    </ul>
+                </li>
+                <li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN" class="dropdown pointer">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                        <span>
+                            <span class="glyphicon glyphicon-tower"></span>
+                            <span class="hidden-sm">Administration</span>
+                            <b class="caret"></b>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li ui-sref-active="active"><a ui-sref="user-management" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-user"></span>
+                            &#xA0;<span>User management</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="metrics" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-dashboard"></span>
+                            &#xA0;<span>Metrics</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="health" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-heart"></span>
+                            &#xA0;<span>Health</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="configuration" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-list-alt"></span>
+                            &#xA0;<span>Configuration</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="audits" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-bell"></span>
+                            &#xA0;<span>Audits</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="logs" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-tasks"></span>
+                            &#xA0;<span>Logs</span></a></li>
+                        <li ng-hide="inProduction" ui-sref-active="active"><a ui-sref="docs" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-book"></span>
+                            &#xA0;<span>API</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+-->
+<style>
+    #navigation {
+        position: fixed;
+        width: 100%;
+        min-height: 40px;
+        /*- shrunk height */
+        max-height: 600px;
+        /*- allows strechyness on scroll passed top */
+        height: 600px;
+        /*- start height */
+        margin-bottom: 20px;
+        background-image: url(https://static.pexels.com/photos/7355/startup-photos.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    #navigation #bs-example-navbar-collapse-1 > form > div {
+        display: inline;
+    }
+    #navigation #bs-example-navbar-collapse-1 > form > div, #navigation > nav > div > div > form > div {
+        display: inline-block;
+        height: 600px;
+        /*- set same as "start height" */
+        line-height: 600px;
+        /*- set same as "start height" */
+    }
+    #navigation #bs-example-navbar-collapse-1 > form > div > span, #navigation > nav > div > div > form > div > span {
+        display: inline-block;
+        width: auto;
+        height: 600px;
+        /*- set same as "start height" */
+        line-height: 600px;
+        /*- set same as "start height" */
+    }
+    #nextElementFix {
+        width: 100%;
+        padding-top: 620px;
+        /*- set same as "start height" */
+    }
+    a {
+        text-decoration: none;
+        color: white;
+    }
+    .thumbnail .caption {
+        padding: 30px;
+    }
+    .thumbnail .caption h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .thumbnail {
+        padding: 0px;
+        border: none;
+        border-radius: 5px;
+        transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+    body {
+        background-color: #FAFAFA;
+    }
+    .thumbnail:hover {
+        /*box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);*/
+        box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.4);
+    }
+    .thumbnail > img, .hola >img {
+        object-fit: cover;
+        width: 100%;
+        height: 265px;
+    }
+    .badge-notify {
+        background: red;
+        position: relative;
+        top: -15px;
+        left: -32px;
+    }
+    .btn-lg:focus, .btn-lg:active, btn-link:focus {
+        outline: none !important;
+    }
+    .badge {
+        display: inline-block;
+        min-width: 10px;
+        padding: 3px 5px;
+        font-size: 7px;
+        font-weight: bold;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        border-radius: 50%;
+        background: red;
+    }
+    .navbar {
+        background-color: #0097A7 !important;
+    }
+    .navbar-form {
+        margin-top: 0 !important;
+    }
+
+    /*Mirara esto next*/
+    .navbar.navbar{
+        color: white !important;
+    }
+    .general {
+        background: rgba(255, 255, 255, .15) !important;
+        border: none !important;
+        border-radius: 3px !important;
+        color: white !important;
+        max-width: 720px !important;
+        width: 100% !important;
+    }
+    .general::-webkit-input-placeholder {
+        /* WebKit, Blink, Edge */
+        color: white;
+    }
+    .general:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: white;
+        opacity: 1;
+    }
+    .general::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: white;
+        opacity: 1;
+    }
+    .general:-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: white;
+    }
+    .add-on {
+        position: relative !important;
+    }
+    .add-on input {
+        padding-left: 55px !important;
+        height: 50px;
+        min-height: 28px;
+    }
+    .add-on input:focus {
+        border-color: none;
+        outline: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .add-on span {
+        position: absolute;
+        padding: 1px 12px;
+        pointer-events: none;
+        font-size: 18px;
+        margin: 0px 8px;
+        color: white;
+    }
+    @media (min-width: 768px) {
+        .container {
+            width: 695px;
+        }
+    }
+    @media (min-width: 1200px) {
+        .container {
+            width: 1020px;
+        }
+    }
+    @media (min-width: 992px) {
+        .container {
+            width: 970px;
+        }
+    }
+    .footer {
+        position: relative;
+        height: 99px;
+        margin-top: 40px;
+        border-top: 1px solid #ddd;
+        color: #666;
+        font-size: 13px;
+        overflow: hidden;
+        background: #f5f5f5;
+        text-shadow: 0 1px 0 #fff;
+    }
+    .container .text-muted {
+        margin: 28px 0;
+    }
+    .left {
+        float: left;
+    }
+    .right {
+        float: right;
+    }
+    .footer ul a {
+        color: #4183c4;
+        text-decoration: none;
+    }
+    .footer ul {
+        list-style: none;
+    }
+    .footer .container li {
+        display: block;
+        float: left;
+        margin-right: 10px;
+    }
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    .btn-link {
+        color: white;
+    }
+    .btn-link:focus {
+        text-decoration: none !important;
+    }
+    .btn-link:hover {
+        text-decoration: none !important;
+    }
+    @media (max-width: 768px) {
+        .thumbnail button.btn-fab {
+            top: 62%;
+            left: 67%;
+            position: absolute;
+        }
+    }
+    @media (min-width: 768px) {
+        .thumbnail button.btn-fab {
+            top: 59%;
+            left: 70%;
+            position: absolute;
+        }
+    }
+
+    .inside-nav{
+        height: 100%;
+        width: 100%;
+    }
+
+
+    /*NAVBAR collapsing*/
+    @media (min-width: 768px){
+        .navbar-nav > li {
+            float: right;
+        }
+    }
+
+    .nav > li{
+        display: inline-block;
+    }
+    .navbar-toggle {
+        display: none;
+    }
+    .navbar-nav{
+        float: right !important;
+        margin: 0;
+        display: inline-block;
+    }
+    .navbar-form{
+        display: inline-block;
+        float: left;
+    }
+
+    .navbar-form {
+        margin: 0 !important;
+        border-top: none;
+        border-bottom: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+
+    .navbar-form input{
+        display: inline-block;
+    }
+
+    .navbar-header{
+        width: 100%;
+    }
+
+    @media (max-width: 768px) {
+        .navbar .dropdown-menu.no-collapse {
+            background-color: #ffffff;
+            box-shadow: rgba(0, 0, 0, 0.258824) 0px 2px 5px 0px;
+            left: auto;
+            position: absolute;
+            right: 0px;
+            z-index: 1000;
+        }
+        .dropdown-menu > li > a {
+            display: block;
+            padding: 3px 20px;
+            clear: both;
+            font-weight: normal;
+            line-height: 1.42857143;
+            color: #333 !important;
+            white-space: nowrap;
+        }
+        .navbar.navbar .dropdown-menu li > a:hover, .navbar-default.navbar .dropdown-menu li > a:hover, .navbar.navbar .dropdown-menu li > a:focus, .navbar-default.navbar .dropdown-menu li > a:focus {
+            color: #009688 !important;
+            background-color: #eeeeee !important;
+        }
+    }
+    @media (min-width: 1200px) {
+        .navbar-brand{
+            line-height: 20px !important;
+        }
+    }
+
+    form.navbar-form.navbar-left.ng-pristine.ng-valid{
+        width: 50%;
+    }
+    .form-group.add-on{
+        width: 100%;
+    }
+</style>
+
+<script>
+    //Note: line height is set to match navigation_height and navigation_min_height respectivly
+    navigation_height = 600
+    navigation_min_height = 50
+
+
+    $(window).scroll(function() {
+
+        if (($('body').scrollTop() >= -40) && ($('body').scrollTop() <= (navigation_height - navigation_min_height))) {
+            //controls elements dimentions on scroll
+            var s = $('body').scrollTop();
+            console.log(s);
+            $('#navigation').stop().animate({
+                height: navigation_height - s,
+            }, 10);
+            $('#navigation form > div').stop().animate({
+                height: navigation_height - s,
+                lineHeight: navigation_height - s,
+            }, 10);
+            $('#navigation form > div > span').stop().animate({
+                height: navigation_height - s,
+                lineHeight: navigation_height - s,
+            }, 10);
+            $('#navigation form > div > input').stop().animate({
+                height: navigation_min_height - s / 30,
+            }, 10);
+            $('.navbar').css('box-shadow', 'none');
+            $('.inside-nav').css('background-color', 'rgba(0,151,167, '+s/550+')');
+            $('.navbar').css('background-image', 'url(https://static.pexels.com/photos/7355/startup-photos.jpg)');
+
+            //Elements under navigation bar fix
+            //Laggy? Remove this code. The over flow is has a pretty cool effect anyway.
+            /*$('#nextElementFix').stop().animate({
+             paddingTop:navigation_height-s,
+             },10);
+             console.log(s);*/
+        } else if (($('body').scrollTop() >= -40) && ($('body').scrollTop() >= (navigation_height - navigation_min_height))) {
+            //hold animation on fast scroll
+            var s = $('body').scrollTop();
+            $('#navigation').stop().animate({
+                height: navigation_min_height
+            }, 15);
+            $('#navigation form > div').stop().animate({
+                height: navigation_min_height,
+                lineHeight: navigation_min_height,
+            }, 15);
+            $('#navigation form > div > span').stop().animate({
+                height: navigation_min_height,
+                lineHeight: navigation_min_height,
+            }, 15);
+            $('#navigation  form > div > input').stop().animate({
+                height: 28,
+            }, 10);
+            $('.navbar').css('box-shadow', '0 1px 5px rgba(0,0,0,0.3)');
+            $('.navbar').css('background-image', 'none');
+            $('.navbar').css('background-color', 'rgba(0,151,167) !important');
+
+
+
+            /*$('#nextElementFix').stop().animate({
+             paddingTop:navigation_min_height-s
+             },15);*/
+        }
+    });
+
+</script>
+
+<nav id="navigation" class="navbar navbar-static-top" role="navigation">
+    <nav class="inside-nav">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/">CoWork</a>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group add-on">
+                        <span class="mdi-action-search"></span>
+                        <input type="text" class="form-control general" placeholder="Search" style="height:50px">
+                    </div>
+                </form>
+
+                <ul class="nav navbar-nav navbar-right" ng-switch="isAuthenticated()">
+                    <button class="btn-lg btn-link">
+                        <span class="mdi-social-notifications"></span>
+                    </button>
+                    <span class="badge badge-notify">3</span>
+                    <li  ng-class="{active: $state.includes('account')}" class="dropdown">
+                        <button href="#" class="btn-lg btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="mdi-social-person"></span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="settings" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-wrench"></span>
+                                &#xA0;<span>Settings</span></a></li>
+                            <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="password" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-lock"></span>
+                                &#xA0;<span>Password</span></a></li>
+                            <!--<li ui-sref-active="active" ng-switch-when="true"><a ui-sref="sessions" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-cloud"></span>
+                                &#xA0;<span>Sessions</span></a></li>-->
+                            <li ui-sref-active="active"><a ui-sref="profile" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-asterisk"></span>
+                                &#xA0;<span >Profile</span></a></li>
+                            <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-log-out"></span>
+                                &#xA0;<span>Sign out</span></a></li>
+                            <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-log-in"></span>
+                                &#xA0;<span>Sign in</span></a></li>
+                            <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="register" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-plus-sign"></span>
+                                &#xA0;<span>Register</span></a></li>
+                        </ul>
+
+                    </li>
+                </ul>
+            </div>
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+</nav>
+<!--
+<nav>
+
+  <ul id="navigation">
+    <li><a href="#">About</a></li>
+    <li><a href="#">Photos</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>-->
+<div id="nextElementFix"></div>
+<!-- fixed position fix  -->

@@ -1,0 +1,272 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="classy-profile">
+                <img src="https://placehold.it/250x250">
+                <h1 class="card-names">
+                    <span class="card-name">Nil Panés Coll</span>
+                    <span class="card-email">nil.panes@gmail.com</span>
+                </h1>
+                <div class="collection">
+                    <a class="item"><span class="glyphicon glyphicon-comment"></span></a>
+                    <a class="item"><span class="glyphicon glyphicon-heart-empty"></span></a>
+                </div>
+                <button class="btn btn-width"><span class="glyphicon glyphicon-pencil"></span>
+                    <span class="btn-s">Editar perfil</span>
+                    <div class="ripple-container"></div>
+                </button>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="panel panel-default">
+                <div class="panel-heading panel-tabs">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#profile" class="btn-raised" data-toggle="tab">Espacios</a></li>
+                        <li><a href="#profile" data-toggle="tab">Favoritos</a></li>
+                    </ul>
+                </div>
+                <div class="panel-body">
+
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="row-picture">
+                                <img class="circle" src="https://placehold.it/250x250" alt="icon">
+                            </div>
+                            <div class="row-content">
+                                <h4 class="list-group-item-heading">Tile with avatar</h4>
+
+                                <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus</p>
+                            </div>
+                        </div>
+                        <div class="list-group-separator"></div>
+                        <div class="list-group-item">
+                            <div class="row-picture">
+                                <img class="circle" src="https://placehold.it/250x250" alt="icon">
+                            </div>
+                            <div class="row-content">
+                                <h4 class="list-group-item-heading">Tile with another avatar</h4>
+
+                                <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
+                            </div>
+                        </div>
+                        <div class="list-group-separator"></div>
+                    </div>
+<!--
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>user</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
+                            <tr ng-repeat="space in spaces track by space.id">
+                                <td><a ui-sref="space.detail({id:space.id})">{{space.id}}</a></td>
+                                <td>{{space.title}}</td>
+                                <td>{{space.description}}</td>
+                                <td>
+                                    {{space.user.email}}
+                                </td>
+                                <td>
+                                    <button type="submit" ui-sref="space.detail({id:space.id})" class="btn btn-info btn-sm">
+                                        <span class="glyphicon glyphicon-eye-open"></span>&nbsp;
+                                        <span> View</span>
+                                    </button>
+                                    <button type="submit" ui-sref="space.edit({id:space.id})" class="btn btn-primary btn-sm">
+                                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;
+                                        <span> Edit</span>
+                                    </button>
+                                    <button type="submit" ng-click="delete(space.id)" class="btn btn-danger btn-sm">
+                                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;
+                                        <span> Delete</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .btn-width {
+        width: 100%;
+        padding: 6px 12px;
+    }
+
+    .panel-body {
+        padding: 0;
+    }
+
+
+    @media (max-width: 768px) {
+        .classy-profile img {
+            height: 115px !important;
+            width: 115px !important;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            border-radius: 3px;
+            margin-right: 15px;
+        }
+        .classy-profile {
+            position: relative;
+            margin-bottom: 15px;
+            padding: 15px 15px 10px 140px;
+            background: #fff;
+            line-height: 1.5;
+            overflow: visible;
+            min-height: 140px;
+            border-radius: 3px;
+            border: 0;
+            -webkit-box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+            box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+        }
+    }
+
+    .classy-profile img {
+        width: 100%;
+        height: 100%
+    }
+
+    .panel-tabs {
+        padding: 0px;
+        overflow: hidden;
+    }
+
+    .nav-tabs {
+        background-color: #455A64;
+    }
+
+    .btn-i {
+        vertical-align: text-top;
+        font-size: 18px;
+    }
+
+    .btn-s {
+        vertical-align: text-top;
+        margin-left: 5px;
+    }
+
+    .card-names {
+        margin-top: 5px;
+        line-height: 1;
+    }
+
+    .panel {
+        overflow: hidden;
+        border-radius: 3px;
+    }
+
+    .card-name {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        font-size: 26px;
+        line-height: 30px;
+        text-overflow: ellipsis;
+        margin-bottom: 5px;
+    }
+
+    .card-email {
+        display: block;
+        overflow: hidden;
+        width: 100%;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 24px;
+        text-overflow: ellipsis;
+        color: rgba(0,0,0,0.54);
+    }
+
+    .collection {
+        margin: 0.5rem 0 1rem 0;
+        /*border: 1px solid rgba(0,0,0,0.12);*/
+        border-radius: 3px;
+        overflow: hidden;
+        position: relative;
+        background-color: white;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+    }
+
+
+    .collection .item {
+        width: 50%;
+        color: rgba(0,0,0,0.87);
+        display: inline-block;
+        white-space: nowrap;
+        text-align: center;
+        padding: 10px 0;
+        float: left;
+        cursor: pointer;
+        font-size: 20px;
+    }
+    .collection .item:hover{
+        transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        /*box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.24);*/
+        box-shadow: inset 2px 0px 8px -2px rgba(0,0,0,0.24);
+    }
+    .collection .item:first-child:hover{
+        box-shadow: inset -2px 0px 8px -2px rgba(0,0,0,0.24);
+    }
+    .collection .item:first-child{
+        border-right: 1px solid rgba(0,0,0,0.12);
+        color: #0091EA;
+    }
+    .collection .item:last-child{
+        border-left: 1px solid rgba(0,0,0,0.12);
+        color: #D50000;
+
+    }
+    .list-group .list-group-item{
+        padding: 10px 16px;
+    }
+    .list-group-item:hover {
+        background-color: rgba(158, 158, 158, 0.2);
+        transition: background-color .4s cubic-bezier(.25, .8, .25, 1);
+    }
+    .list-group .list-group-separator{
+    margin-bottom: 0px;
+        margin-top: 0px;
+    }
+
+    .list-group .list-group-separator:before{
+        margin-top: 0;
+        margin-bottom: 0;
+        border-bottom: 1px solid rgba(158,158,158,0.2);
+        margin-left: -200px;
+    }
+    .list-group .list-group-item h4{
+        font-size: 1.6rem !important;
+        font-weight: 300;
+        letter-spacing: 0.010em;
+        line-height: 1.6em;
+        color: rgba(0,0,0,0.87);
+    }
+    .list-group-item-text{
+        color: rgba(0,0,0,0.54);
+        font-weight: 500;
+    }
+    .nav-tabs > li > a, .nav-tabs > li > a:hover, .nav-tabs > li > a:focus{
+        padding: 12px 24px;
+        line-height: 24px;
+        color: rgba(255,255,255,0.70) !important;
+    }
+    .nav-tabs > li.active{
+        border-bottom: 3px solid rgb(0, 151, 167);
+    }
+    .nav-tabs > li.active > a{
+        color: white !important;
+    }
+
+
+</style>
+
