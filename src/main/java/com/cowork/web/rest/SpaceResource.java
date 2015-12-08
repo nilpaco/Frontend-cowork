@@ -1,8 +1,13 @@
 package com.cowork.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.cowork.domain.Fav;
 import com.cowork.domain.Space;
+import com.cowork.domain.User;
+import com.cowork.repository.FavRepository;
 import com.cowork.repository.SpaceRepository;
+import com.cowork.repository.UserRepository;
+import com.cowork.security.AuthoritiesConstants;
 import com.cowork.security.SecurityUtils;
 import com.cowork.web.rest.util.HeaderUtil;
 import com.cowork.web.rest.util.PaginationUtil;
@@ -35,6 +40,12 @@ public class SpaceResource {
 
     @Inject
     private SpaceRepository spaceRepository;
+
+    @Inject
+    private UserRepository userRepository;
+
+    @Inject
+    private FavRepository favRepository;
 
     /**
      * POST  /spaces -> Create a new space.
@@ -87,6 +98,26 @@ public class SpaceResource {
     }
 
     /**
+     * GET  /points -> get all the points.
+     */
+    @RequestMapping(value = "/spaceByUser",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<Space>> getAll(Pageable pageable)
+        throws URISyntaxException {
+        Page<Space> page;
+        if (SecurityUtils.isUserInRole(AuthoritiesConstants.ADMIN)) {
+            page = spaceRepository.findAll(pageable);
+        } else {
+            page = spaceRepository.findAllForCurrentUser(pageable);
+        }
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/spacesUser");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+
+    /**
      * GET  /spaces/:id -> get the "id" space.
      */
     @RequestMapping(value = "/spaces/{id}",
@@ -114,4 +145,28 @@ public class SpaceResource {
         spaceRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("space", id.toString())).build();
     }
+
+    @RequestMapping(value = "/favspace/{id}",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Space> createSpace(@PathVariable Long idSpace) throws URISyntaxException {
+        log.debug("REST request to add a FavSpace : {}", idSpace);
+
+        Space space = spaceRepository.findOne(idSpace);
+
+        User user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+
+        Fav fav = new Fav();
+        fav.setSpace(space);
+        fav.setUser(user);
+
+        favRepository.save(fav);
+
+
+        return ResponseEntity.created(new URI("/api/fav/" + fav.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert("fav", fav.getId().toString()))
+            .body(space);
+    }
+
 }

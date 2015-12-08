@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('coworkApp')
-    .controller('MainController', function ($scope, Principal, Space, ParseLinks) {
+    .controller('MainController', function ($scope, Principal, Space, Fav, ParseLinks) {
         $scope.spaces = [];
         $scope.page = 0;
         $scope.loadAll = function(){
@@ -39,7 +39,29 @@ angular.module('coworkApp')
         Principal.identity().then(function(account) {
             $scope.account = account;
             $scope.isAuthenticated = Principal.isAuthenticated;
-        })
+        });
+
+
+
+        /*$scope.favs = [];
+        $scope.page = 0;
+        $scope.loadAll = function(){
+            Space.query({page: $scope.page, size: 3}, function(result, headers) {
+                $scope.links = ParseLinks.parse(headers('link'));
+                for (var i = 0; i < result.length; i++) {
+                    $scope.favs.push(result[i]);
+                }
+            });
+        };*/
+
+
+        $scope.addFav = function (id) {
+                Space.addFav({id : id});
+        };
+
+        $scope.getUser = [];
+
+
         /*.controller('SearcjController', function ($scope, SearchService) {
             $scope.search = function () {
                 console.log("Search term is: " + $scope.term);

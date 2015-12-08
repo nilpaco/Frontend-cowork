@@ -32,7 +32,7 @@ angular.module('coworkApp')
                 views: {
                     'content@': {
                         templateUrl: 'scripts/app/profile/profile.html',
-                        controller: 'ProfileController'
+                        controller: 'MainController'
                     }
                 },
                 resolve: {

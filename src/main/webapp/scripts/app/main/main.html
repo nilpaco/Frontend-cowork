@@ -60,31 +60,12 @@
     }
 
 </style>
-<!--
-<header class="intro-header" ng-cloak>
-    <div class="container">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="site-heading">
-                <h1>Title heading</h1>
-                <div class="row">
-                    <div class="col-md-8">
-                        <input type="text" class="form-control input-xlarge">
-                    </div>
-                    <div class="col-md-4">
-                        <md-button class="md-raised">Button</md-button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
--->
 <div class="container">
     <div class="row" infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
         <div class="col-sm-6 col-md-4" ng-repeat="space in spaces track by space.id">
             <div class="thumbnail">
                 <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?dpr=2&fit=crop&fm=jpg&h=775&ixjsv=2.0.0&ixlib=rb-0.3.5&q=50&w=1450" alt="img">
-                <button type="button" class="btn btn-fab btn-raised btn-material-red">
+                <button ng-click="addFav({id:space.id})" type="button" class="btn btn-fab btn-raised btn-material-red">
                     <i class="mdi-action-favorite"></i>
                 </button>
                 <div class="caption">

@@ -8,10 +8,6 @@
                     <span class="card-name">Nil Panés Coll</span>
                     <span class="card-email">nil.panes@gmail.com</span>
                 </h1>
-                <div class="collection">
-                    <a class="item"><span class="glyphicon glyphicon-comment"></span></a>
-                    <a class="item"><span class="glyphicon glyphicon-heart-empty"></span></a>
-                </div>
                 <button class="btn btn-width"><span class="glyphicon glyphicon-pencil"></span>
                     <span class="btn-s">Editar perfil</span>
                     <div class="ripple-container"></div>
@@ -23,18 +19,39 @@
                 <div class="panel-heading panel-tabs">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#profile" class="btn-raised" data-toggle="tab">Espacios</a></li>
-                        <li><a href="#profile" data-toggle="tab">Favoritos</a></li>
                     </ul>
                 </div>
                 <div class="panel-body">
-
-                    <div class="list-group">
-                        <div class="list-group-item">
+                    <div class="list-group"  infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
+                        <div class="list-group-item" ng-repeat="space in spaces track by space.id">
                             <div class="row-picture">
                                 <img class="circle" src="https://placehold.it/250x250" alt="icon">
                             </div>
                             <div class="row-content">
-                                <h4 class="list-group-item-heading">Tile with avatar</h4>
+                                <h4 class="list-group-item-heading">{{space.title}}</h4>
+
+                                <p class="list-group-item-text">{{space.description}}</p>
+                            </div>
+                        </div>
+                        <!--<div class="list-group-separator"></div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading panel-tabs">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#profile" data-toggle="tab">Favoritos</a></li>
+                    </ul>
+                </div>
+                <div class="panel-body">
+
+                    <div class="list-group" infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
+                        <div class="list-group-item" ng-repeat="fav in favs track by fav.id">
+                            <div class="row-picture">
+                                <img class="circle" src="https://placehold.it/250x250" alt="icon">
+                            </div>
+                            <div class="row-content">
+                                <h4 class="list-group-item-heading">{{fav.space_id}}</h4>
 
                                 <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus</p>
                             </div>
@@ -52,50 +69,22 @@
                         </div>
                         <div class="list-group-separator"></div>
                     </div>
-<!--
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>user</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
-                            <tr ng-repeat="space in spaces track by space.id">
-                                <td><a ui-sref="space.detail({id:space.id})">{{space.id}}</a></td>
-                                <td>{{space.title}}</td>
-                                <td>{{space.description}}</td>
-                                <td>
-                                    {{space.user.email}}
-                                </td>
-                                <td>
-                                    <button type="submit" ui-sref="space.detail({id:space.id})" class="btn btn-info btn-sm">
-                                        <span class="glyphicon glyphicon-eye-open"></span>&nbsp;
-                                        <span> View</span>
-                                    </button>
-                                    <button type="submit" ui-sref="space.edit({id:space.id})" class="btn btn-primary btn-sm">
-                                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;
-                                        <span> Edit</span>
-                                    </button>
-                                    <button type="submit" ng-click="delete(space.id)" class="btn btn-danger btn-sm">
-                                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;
-                                        <span> Delete</span>
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>-->
                 </div>
             </div>
+
         </div>
     </div>
 </div>
 <style>
+    #navigation{
+        height: 50px !important;
+        background-color: rgb(0, 151,167) !important;
+        background-image: none !important;
+    }
+    #nextElementFix{
+        padding-top: 70px !important;
+    }
+
     .btn-width {
         width: 100%;
         padding: 6px 12px;
@@ -105,7 +94,21 @@
         padding: 0;
     }
 
+    #navigation #bs-example-navbar-collapse-1 > form > div, #navigation > nav > div > div > form > div {
+        display: inline-block;
+        height: 50px !important;
+        line-height: 50px !important;
+    }
+    #navigation #bs-example-navbar-collapse-1 > form > div > span, #navigation > nav > div > div > form > div > span {
+        display: inline-block;
+        width: auto;
+        height: 50px !important;
+        line-height: 50px !important;
+    }
 
+    .add-on input{
+        height: 28px !important;
+    }
     @media (max-width: 768px) {
         .classy-profile img {
             height: 115px !important;
@@ -187,45 +190,6 @@
         color: rgba(0,0,0,0.54);
     }
 
-    .collection {
-        margin: 0.5rem 0 1rem 0;
-        /*border: 1px solid rgba(0,0,0,0.12);*/
-        border-radius: 3px;
-        overflow: hidden;
-        position: relative;
-        background-color: white;
-        box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
-    }
-
-
-    .collection .item {
-        width: 50%;
-        color: rgba(0,0,0,0.87);
-        display: inline-block;
-        white-space: nowrap;
-        text-align: center;
-        padding: 10px 0;
-        float: left;
-        cursor: pointer;
-        font-size: 20px;
-    }
-    .collection .item:hover{
-        transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-        /*box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.24);*/
-        box-shadow: inset 2px 0px 8px -2px rgba(0,0,0,0.24);
-    }
-    .collection .item:first-child:hover{
-        box-shadow: inset -2px 0px 8px -2px rgba(0,0,0,0.24);
-    }
-    .collection .item:first-child{
-        border-right: 1px solid rgba(0,0,0,0.12);
-        color: #0091EA;
-    }
-    .collection .item:last-child{
-        border-left: 1px solid rgba(0,0,0,0.12);
-        color: #D50000;
-
-    }
     .list-group .list-group-item{
         padding: 10px 16px;
     }
@@ -254,6 +218,9 @@
     .list-group-item-text{
         color: rgba(0,0,0,0.54);
         font-weight: 500;
+    }
+    .list-group {
+        margin-bottom: 0px;
     }
     .nav-tabs > li > a, .nav-tabs > li > a:hover, .nav-tabs > li > a:focus{
         padding: 12px 24px;

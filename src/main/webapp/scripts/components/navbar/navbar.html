@@ -208,6 +208,7 @@
         color: white !important;
         max-width: 720px !important;
         width: 100% !important;
+        font-weight: 400;
     }
     .general::-webkit-input-placeholder {
         /* WebKit, Blink, Edge */
@@ -226,6 +227,27 @@
     .general:-ms-input-placeholder {
         /* Internet Explorer 10-11 */
         color: white;
+    }
+    .general:focus::-webkit-input-placeholder {
+        /* WebKit, Blink, Edge */
+        color: rgba(0,0,0,0.54) !important;
+    }
+    .general:focus:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: black;
+        opacity: 1;
+        color: rgba(0,0,0,0.54) !important;
+    }
+    .general:focus::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: black;
+        opacity: 1;
+        color: rgba(0,0,0,0.54) !important;
+    }
+    .general:focus:-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: black;
+        color: rgba(0,0,0,0.54) !important;
     }
     .add-on {
         position: relative !important;
@@ -406,6 +428,12 @@
     .form-group.add-on{
         width: 100%;
     }
+
+    input.form-control.general:focus{
+        background-color: #ffffff !important;
+        color: rgba(0,0,0,0.87) !important;
+        transition: background-color 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 </style>
 
 <script>
@@ -472,6 +500,14 @@
              },15);*/
         }
     });
+
+    $(".general").focus(function(){
+        $(".mdi-action-search").css("color", "rgba(0,0,0,0.87)");
+    })
+
+    $(".general").blur(function(){
+        $(".mdi-action-search").css("color", "white");
+    })
 
 </script>
 
