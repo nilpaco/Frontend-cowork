@@ -12,6 +12,7 @@ angular.module('coworkApp')
                 }
             });
         };
+
         $scope.reset = function() {
             $scope.page = 0;
             $scope.spaces = [];
@@ -41,33 +42,24 @@ angular.module('coworkApp')
             $scope.isAuthenticated = Principal.isAuthenticated;
         });
 
-
-
-        /*$scope.favs = [];
-        $scope.page = 0;
-        $scope.loadAll = function(){
-            Space.query({page: $scope.page, size: 3}, function(result, headers) {
-                $scope.links = ParseLinks.parse(headers('link'));
-                for (var i = 0; i < result.length; i++) {
-                    $scope.favs.push(result[i]);
-                }
-            });
-        };*/
-
-
         $scope.addFav = function (id) {
                 Space.addFav({id : id});
         };
 
-        $scope.getUser = [];
+        $scope.spaces2 = [];
+        $scope.page2 = 0;
+        $scope.spaceByUser = function(){
+            Space.spaceByUser({page2: $scope.page2, size: 3}, function(result, headers) {
+                $scope.links = ParseLinks.parse(headers('link'));
+                for (var i = 0; i < result.length; i++) {
+                    $scope.spaces2.push(result[i]);
+                }
+            });
+        };
+
+        $scope.spaceByUser();
 
 
-        /*.controller('SearcjController', function ($scope, SearchService) {
-            $scope.search = function () {
-                console.log("Search term is: " + $scope.term);
-                SearchService.query($scope.term).then(function(response){
-                    $scope.searchResult = response.data;
-                });
-            }
-        })*/
+
     });
+

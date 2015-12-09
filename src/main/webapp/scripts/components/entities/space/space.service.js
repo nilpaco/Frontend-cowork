@@ -5,7 +5,7 @@ angular.module('coworkApp')
         return $resource('api/spaces/:id', {}, {
             'query': { method: 'GET', isArray: true},
             'addFav': { method: 'POST', url: 'api/favspace/:id'},
-            'getUser': { method: 'GET', isArray: false, url: 'api/spacesUser'},
+            'spaceByUser': { method: 'GET', isArray: true, url: 'api/spaceByUser'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

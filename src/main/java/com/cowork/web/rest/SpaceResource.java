@@ -98,7 +98,7 @@ public class SpaceResource {
     }
 
     /**
-     * GET  /points -> get all the points.
+     * GET  /spaceByUser -> get all the spaces from a user.
      */
     @RequestMapping(value = "/spaceByUser",
         method = RequestMethod.GET,
@@ -164,7 +164,7 @@ public class SpaceResource {
         favRepository.save(fav);
 
 
-        return ResponseEntity.created(new URI("/api/fav/" + fav.getId()))
+        return ResponseEntity.created(new URI("/api/favs/" + fav.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("fav", fav.getId().toString()))
             .body(space);
     }
