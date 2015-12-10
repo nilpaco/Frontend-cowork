@@ -3,6 +3,8 @@ package com.cowork.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.cowork.domain.Fav;
 import com.cowork.repository.FavRepository;
+import com.cowork.security.AuthoritiesConstants;
+import com.cowork.security.SecurityUtils;
 import com.cowork.web.rest.util.HeaderUtil;
 import com.cowork.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -111,4 +113,25 @@ public class FavResource {
         favRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("fav", id.toString())).build();
     }
+
+    /**
+     * GET  /spaceByUser -> get all favs from a user.
+     */
+    @RequestMapping(value = "/favsByUser",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<Fav>> getAll(Pageable pageable)
+        throws URISyntaxException {
+        Page<Fav> page;
+        if (SecurityUtils.isUserInRole(AuthoritiesConstants.ADMIN)) {
+            page = favRepository.findAll(pageable);
+        } else {
+            page = favRepository.findAllForCurrentUser(pageable);
+        }
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/favsByUser");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+
 }

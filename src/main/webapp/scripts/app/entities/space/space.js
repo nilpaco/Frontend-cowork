@@ -66,14 +66,14 @@ angular.module('coworkApp')
                 }]
             })
             .state('space.edit', {
-                parent: 'space',
+                parent: 'profile',
                 url: '/{id}/edit',
                 data: {
                     authorities: ['ROLE_USER'],
                 },
                 onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
                     $modal.open({
-                        templateUrl: 'scripts/app/entities/space/space-dialog.html',
+                        templateUrl: 'scripts/app/profile/space-dialog.html',
                         controller: 'SpaceDialogController',
                         size: 'lg',
                         resolve: {
@@ -82,7 +82,7 @@ angular.module('coworkApp')
                             }]
                         }
                     }).result.then(function(result) {
-                        $state.go('space', null, { reload: true });
+                        $state.go('profile', null, { reload: true });
                     }, function() {
                         $state.go('^');
                     })
