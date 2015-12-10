@@ -156,9 +156,9 @@ ul#strengthBar {
     background:#DDD;
     border-radius:2px;
     display:inline-block;
-    height:5px;
+    height:3px;
     margin-right:1px;
-    width:20px;
+    width:35px;
 }
 /* end Password strength bar style */
 
@@ -194,4 +194,9 @@ ul#strengthBar {
     background-image: url("http://cdn2.vox-cdn.com/assets/4801686/Dropbox_Hackweek_KB_4666.jpg");
 }
 
-
+.btn-primary:not(.btn-link):not(.btn-flat){
+    color: #fff;
+}
+.btn-danger:not(.btn-link):not(.btn-flat){
+    color: #fff;
+}

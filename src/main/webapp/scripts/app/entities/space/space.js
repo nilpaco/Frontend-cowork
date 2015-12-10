@@ -39,7 +39,7 @@ angular.module('coworkApp')
                 }
             })
             .state('space.new', {
-                parent: 'space',
+                parent: 'profile',
                 url: '/new',
                 data: {
                     authorities: ['ROLE_USER'],
@@ -59,9 +59,9 @@ angular.module('coworkApp')
                             }
                         }
                     }).result.then(function(result) {
-                        $state.go('space', null, { reload: true });
+                        $state.go('profile', null, { reload: true });
                     }, function() {
-                        $state.go('space');
+                        $state.go('profile');
                     })
                 }]
             })

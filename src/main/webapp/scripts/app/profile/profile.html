@@ -24,31 +24,42 @@
                 <div class="panel-heading panel-tabs">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#profile" class="btn-raised" data-toggle="tab">Espacios</a></li>
+                        <li style="float: right">
+                            <button class="btn btn-primary" ui-sref="space.new" style="padding: 5px 20px; margin-right: 10px; color: #fff;">
+                                <span class="glyphicon glyphicon-flash"></span> <span>New Space</span>
+                            </button>
+                        </li>
                     </ul>
                 </div>
                 <div class="panel-body">
                     <div class="list-group"  infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links2['last'] == page">
-                        <div class="list-group-item" ng-repeat="space in spaces2 track by space.id">
-                            <div class="row-picture">
+                            <div class="list-group-item" ng-repeat="space in spaces2 track by space.id">
+                                <a ui-sref="space.detail({id:space.id})">
+                                <div class="row-picture">
                                 <img class="circle" src="https://placehold.it/250x250" alt="icon">
                             </div>
                             <div class="row-content">
                                 <button type="submit"
                                         ui-sref="space.edit({id:space.id})"
-                                        class="btn btn-primary btn-sm">
-                                    <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edit</span>
+                                        class="btn btn-primary btn-sm" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                    <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
                                 <button type="submit"
                                         ng-click="delete(space.id)"
-                                        class="btn btn-danger btn-sm">
-                                    <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Delete</span>
+                                        class="btn btn-danger btn-sm" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>
                                 </button>
 
                                 <h4 class="list-group-item-heading">{{space.title}}</h4>
 
                                 <p class="list-group-item-text">{{space.description}}</p>
+
                             </div>
-                        </div>
+                                </a>
+
+                            </div>
+
+
                         <!--<div class="list-group-separator"></div>-->
                     </div>
                 </div>
@@ -63,6 +74,7 @@
 
                     <div class="list-group" infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links3['last'] == page">
                         <div class="list-group-item" ng-repeat="fav in favs track by fav.id">
+                            <a ui-sref="space.detail({id:fav.space.id})">
                             <div class="row-picture">
                                 <img class="circle" src="https://placehold.it/250x250" alt="icon">
                             </div>
@@ -76,6 +88,7 @@
 
                                 <p class="list-group-item-text">{{fav.space.description}}</p>
                             </div>
+                                </a>
                         </div>
                     </div>
                 </div>
@@ -135,6 +148,13 @@
     </div>
 </div>
 <style>
+
+    .row-content > button{
+        float: right;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     .row-content > .btn-danger{
         float: right;
     }
