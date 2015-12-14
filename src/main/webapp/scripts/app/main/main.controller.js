@@ -43,18 +43,27 @@ angular.module('coworkApp')
         });
 
         $scope.addFav = function (id) {
-                Space.addFav({id : id});
+            Space.addFav({id: id});
         };
 
         $scope.spaces2 = [];
         $scope.page2 = 0;
         $scope.spaceByUser = function(){
-            Space.spaceByUser({page2: $scope.page2, size: 3}, function(result2, headers2) {
+            Space.spaceByUser({page2: $scope.page2, size: 10}, function(result2, headers2) {
                 $scope.links2 = ParseLinks.parse(headers2('link'));
                 for (var i = 0; i < result2.length; i++) {
                     $scope.spaces2.push(result2[i]);
                 }
             });
+        };
+        $scope.reset = function() {
+            $scope.page2 = 0;
+            $scope.spaces2 = [];
+            $scope.spaceByUser();
+        };
+        $scope.loadPage2 = function(page2) {
+            $scope.page = page2;
+            $scope.spaceByUser();
         };
         $scope.spaceByUser();
 
@@ -85,6 +94,7 @@ angular.module('coworkApp')
                 }
             });
         };
+
         $scope.favByUser();
 
         Principal.identity(true).then(function(account) {
@@ -104,7 +114,6 @@ angular.module('coworkApp')
                     $scope.reset();
                     $('#deleteFavConfirmation').modal('hide');
                     $scope.clear();
-                    location.reload();
                 });
         };
     });

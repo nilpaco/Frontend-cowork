@@ -53,26 +53,33 @@
             width: 970px;
         }
     }
-    .thumbnail > img, .hola >img {
+    .thumbnail a > img, .hola >img {
         object-fit: cover;
         width: 100%;
         height: 265px;
+    }
+    .thumbnail a{
+        text-decoration: none;
     }
 
 </style>
 <div class="container">
     <div class="row" infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
         <div class="col-sm-6 col-md-4" ng-repeat="space in spaces track by space.id">
+
             <div class="thumbnail">
-                <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?dpr=2&fit=crop&fm=jpg&h=775&ixjsv=2.0.0&ixlib=rb-0.3.5&q=50&w=1450" alt="img">
-                <button ng-click="addFav({id:space.id})" type="button" class="btn btn-fab btn-raised btn-material-red">
+                <button ng-click="addFav(space.id)" type="button" class="btn btn-fab btn-raised btn-material-red">
                     <i class="mdi-action-favorite"></i>
                 </button>
+                <a ui-sref="space.detail({id:space.id})">
+                <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?dpr=2&fit=crop&fm=jpg&h=775&ixjsv=2.0.0&ixlib=rb-0.3.5&q=50&w=1450" alt="img">
                 <div class="caption">
                     <p>{{space.title}}</p>
                     <h3>700€</h3>
                 </div>
-            </div>
+            </a>
+
+        </div>
         </div>
 </div>
 </div>
